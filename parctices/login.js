@@ -1,7 +1,16 @@
 var connection = require('./connection');
 
-
 exports.login = function(req,res){
+
+	res.send(req.body.email)
+  //var email= req.body.email;
+  //var password = req.body.password;
+
+
+//res.end(email);
+}
+
+/*exports.login = function(req,res){
   var email= req.body.email;
   var password = req.body.password;
   connection.query('SELECT * FROM users WHERE email = ?',[email], function (error, results, fields) {
@@ -35,4 +44,4 @@ exports.login = function(req,res){
     }
   }
   });
-}
+}*/
