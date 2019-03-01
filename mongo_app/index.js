@@ -14,33 +14,28 @@ app.use(bodyParser.json());
 // app.use(expressLayouts);
 
 //// initialize express-session to allow us track the logged-in user across sessions.
-//app.use(session({
-//    secret: '2C44-4D44-WppQ38S',
-//    resave: true,
-//    saveUninitialized: true
-//}));
-
-//DB Connection
-
-
-
+/*app.use(session({
+   secret: '2C44-4D44-WppQ38S',
+   resave: true,
+   saveUninitialized: true
+}));*/
 
 
 // Authentication and Authorization Middleware
-//var auth = function (req, res, next) {
-//    if (req.session && req.session.user_name) {
-//        return next();
-//    } else {
-//        res.redirect('login');
-//    }
-//};
+/* var auth = function (req, res, next) {
+   if (req.session && req.session.user_name) {
+       return next();
+   } else {
+       res.redirect('login');
+   }
+};*/
 
 var user_handler = require('./controllers/user_handler');
 ////var user_dashboard = require('./controllers/dashboard');
 app.set('view engine', 'ejs');
 app.use('/assets', express.static('assets'));
 app.use('/', router);
-//
+
 //
 router.get('/', function (req, res) {
     res.render('register');
@@ -49,7 +44,7 @@ router.get('/register', function (req, res) {
     res.render('register');
 });
 router.post('/register', function (req, res, next) {
-    
+
     let validator = new v(req.body, {
         first_name: 'required|alpha|minLength:3',
         last_name: 'required|alpha|minLength:3',

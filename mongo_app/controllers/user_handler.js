@@ -87,69 +87,69 @@ exports.register = function (req, res) {
 
 
 
-//exports.register = function (req, res) {
-//    var today = new Date();
-//    var email = req.body.email;
-//
-//    var users = {
-//        "first_name": req.body.fname,
-//        "last_name": req.body.lname,
-//        "mobile":req.body.mobile,
-//        "email": req.body.email,
-//        "password": md5(req.body.password),
-//        "created": today,
-//        "modified": today
-//    }
-//    
-//    connection.query('SELECT * FROM node_users WHERE email = ?', [email], function (error, results, fields) {
-//        if (error) {
-//            res.json({error:'Something went wrong.Please try again.'});
-//        } else {
-//            if (results.length == 0) {
-//                connection.query('INSERT INTO node_users SET ?', users, function (error, results, fields) {
-//                    if (error) {
-//                        res.json({error:'Something went wrong.Please try again.'});
-//                    } else {
-//                        req.session.user_added = 'You have registerd successfully.';
-////======================= START SEND EMAIL==============================
-//                        var transporter = nodemailer.createTransport({
-//                            service: 'SMTP',
-//                            auth: {
-//                              user: 'sachin.singh424@gmail.com',
-//                              pass: 'XXXXXXXX'
-//                            }
-//                          });
-//                          
-//                          var mailOptions = {
-//                            from: 'sachin.singh424@gmail.com',
-//                            to: email,
-//                            subject: 'Sending Email using Node.js',
-//                            text: 'That was easy!'
-//                          };
-//                          
-//                          transporter.sendMail(mailOptions, function(error, info){
-//                            if (error) {
-//                              console.log(error);
-//                            } else {
-//                              console.log('Email sent: ' + info.response);
-//                            }
-//                          });
-////======================= END SEND EMAIL==============================
-//
-//                        res.redirect('/register');
-//                    }
-//                });
-//            } else {
-//                res.render('register',{error:{'email':{'message':'Email Id already exist.'}},
-//                fname:req.body.fname,
-//                lname:req.body.lname,
-//                mobile:req.body.mobile,
-//                email:req.body.email,
-//                password:req.body.password,
-//                cnrfm_pswrd:req.body.cnrfm_pswrd,
-//                thanks_msg:''
-//            });
-//            }
-//        }
-//    });
-//}
+/*exports.register = function (req, res) {
+   var today = new Date();
+   var email = req.body.email;
+
+   var users = {
+       "first_name": req.body.fname,
+       "last_name": req.body.lname,
+       "mobile":req.body.mobile,
+       "email": req.body.email,
+       "password": md5(req.body.password),
+       "created": today,
+       "modified": today
+   }
+   
+   connection.query('SELECT * FROM node_users WHERE email = ?', [email], function (error, results, fields) {
+       if (error) {
+           res.json({error:'Something went wrong.Please try again.'});
+       } else {
+           if (results.length == 0) {
+               connection.query('INSERT INTO node_users SET ?', users, function (error, results, fields) {
+                   if (error) {
+                       res.json({error:'Something went wrong.Please try again.'});
+                   } else {
+                       req.session.user_added = 'You have registerd successfully.';
+//======================= START SEND EMAIL==============================
+                       var transporter = nodemailer.createTransport({
+                           service: 'SMTP',
+                           auth: {
+                             user: 'sachin.singh424@gmail.com',
+                             pass: 'XXXXXXXX'
+                           }
+                         });
+                         
+                         var mailOptions = {
+                           from: 'sachin.singh424@gmail.com',
+                           to: email,
+                           subject: 'Sending Email using Node.js',
+                           text: 'That was easy!'
+                         };
+                         
+                         transporter.sendMail(mailOptions, function(error, info){
+                           if (error) {
+                             console.log(error);
+                           } else {
+                             console.log('Email sent: ' + info.response);
+                           }
+                         });
+//======================= END SEND EMAIL==============================
+
+                       res.redirect('/register');
+                   }
+               });
+           } else {
+               res.render('register',{error:{'email':{'message':'Email Id already exist.'}},
+               fname:req.body.fname,
+               lname:req.body.lname,
+               mobile:req.body.mobile,
+               email:req.body.email,
+               password:req.body.password,
+               cnrfm_pswrd:req.body.cnrfm_pswrd,
+               thanks_msg:''
+           });
+           }
+       }
+   });
+}*/

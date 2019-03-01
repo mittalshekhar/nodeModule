@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <title>Register</title>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            form {
+                margin-top: 10px;
+                border: 3px solid #f1f1f1;
+            }
+
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                opacity: 0.8;
+            }
+
+            .cancelbtn {
+                width: auto;
+                padding: 10px 18px;
+                background-color: #f44336;
+                color: #fff;
+                text-decoration: none;
+            }
+
+            .imgcontainer {
+                text-align: center;
+                margin: 24px 0 12px 0;
+            }
+
+            img.avatar {
+                width: 30%;
+                border-radius: 50%;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+
+            /* Change styles for span and cancel button on extra small screens */
+            @media screen and (max-width: 300px) {
+                span.psw {
+                    display: block;
+                    float: none;
+                }
+                .cancelbtn {
+                    width: 100%;
+                }
+            }
+            section{
+                margin: auto;
+                width:800px;
+            }
+            section h2{
+                text-align: center;
+            }
+            .error-msg{
+                margin: 0px;
+                margin-top: -5px;
+                font-size: 12px;
+                letter-spacing: .5px;
+                color: red;
+            }
+            .form-group{
+                display: inline-block;
+                width: 48%;
+                margin-bottom: 15px;
+            }
+            .right{
+                margin-left: 3%;
+            }
+            .sbmt_btn{
+                width: 100px;
+            }
+            .thanks_msg_spn{
+                letter-spacing: 1px;
+                width: 400px;
+                text-align: center;
+                background-color: #00BCD4;;
+                color: white;
+                padding: 14px 20px;
+                margin: auto;
+                border: none;
+                cursor: pointer;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h2 >Register</h2>
+            <% if(typeof thanks_msg !== 'undefined') { %>
+            <span class="thanks_msg_spn"><%= thanks_msg %></span>
+            <% }%>
+            <form action="/register" method="POST">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="fname"><b>First Name</b></label>
+                        <input type="text" name="fname" placeholder="Fisrt Name" value="<% if(typeof fname !== 'undefined'){ %><%= fname %><%} %>">
+                    </div>
+                    <div class="form-group right">
+                        <label for="lname"><b>Last Name</b></label>
+                        <input type="text" name="lname" placeholder="Last Name" value="<% if(typeof lname !== 'undefined'){
+                               %><%= lname %><%
+                               }  %>">
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="uname"><b>Email / Username</b></label>
+                        <input type="text" name="email" placeholder="Email" value="<% if(typeof email !== 'undefined'){
+                               %><%= email %><%
+                               }  %>">
+                    </div>
+
+                    <div class="form-group right">
+                        <label for="mobile"><b>Mobile</b></label>
+                        <input type="text" placeholder="Mobile" name="mobile" value="<% if(typeof mobile !== 'undefined'){
+                               %><%= mobile %><%
+                               }  %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Password" name="password" value="<% if(typeof password !== 'undefined'){
+                               %><%= password %><%
+                               }  %>">
+                    </div>
+
+                    <div class="form-group right">
+                        <label for="psw"><b>Confirm Password</b></label>
+                        <input type="password" placeholder="Confirm Password" name="confirm_password" value="<% if(typeof confirm_password !== 'undefined'){
+                               %><%= confirm_password %><%
+                               }  %>">
+                    </div>
+
+                    <div class="container" style="padding: 0;text-align: center;">
+                        <button type="submit" class="sbmt_btn" style="width:25%;">Submit</button>
+                    </div>
+                    <!-- <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label> -->
+                </div>
+                <!-- <div class="container" style="background-color:#f1f1f1;text-align: center;">
+                    <a href="/login" class="cancelbtn">Login</a>
+                </div> -->
+            </form>
+        </section>
+        <script src="../assets/jquery.min.js"></script>
+        <%
+        if(typeof error !== 'undefined'){
+
+        for(var key in error){
+        var msg = error[key];
+        %>
+        <script type="text/javascript">
+            $('[name="<%=key%>"]').after('<p class="error-msg"><%= msg.message%><p>');
+        </script>
+        <% }
+        }
+        %>
+        <script>
+            setTimeout(function () {
+                $('.thanks_msg_spn').fadeOut();
+            }, 3000);
+        </script>
+    </body>
+</html>
