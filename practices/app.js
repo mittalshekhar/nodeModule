@@ -49,11 +49,19 @@ app.use(session({
 
 // Authentication and Authorization Middleware
 var auth = function (req, res, next) {
-   if (req.session && req.session.user_name) {
+   if (req.session && req.session.user_id) {
        return next();
    } else {
-       res.redirect('/');
+       res.redirect('/login');
    }
+};
+
+var before_auth = function (req, res, next) {
+  if (req.session && req.session.user_id) {
+      res.redirect('/');
+  } else {
+      return next();
+  }
 };
 
 // if you want to set the assets
@@ -61,11 +69,18 @@ app.use('/assets', express.static('assets'));
 //app.use('/static', express.static('public'))
 
 ///
-app.get('/', function (req, res) {
-  res.render('home');
+app.get('/', auth ,function (req, res) {
+  res.send('welcome to dashboard');
 })
-app.get('/register', function (req, res) {
-  // req.session.user_added = 'shkehar';
+
+app.get('/login',before_auth ,function (req, res) {
+  res.render('home',{
+    thanks_msg : req.session.user_added
+  });
+  req.session.user_added = '';
+})
+
+app.get('/register', before_auth ,function (req, res) {
   res.render('register',{
       fname:req.body.fname,
       lname:req.body.lname,
@@ -74,8 +89,6 @@ app.get('/register', function (req, res) {
       password:req.body.password,
       cnrfm_pswrd:req.body.cnrfm_pswrd
    });
-   //req.session.user_added = '';
-
 })
 
 // POST /login gets urlencoded bodies
@@ -98,10 +111,10 @@ app.use('/',router)
 
 /******************************** POST Page code ************************/
 var login = require('./login');
-router.post('/login',login.login); // create a module for login page
+router.post('/login', before_auth ,login.login); // create a module for login page
 
 var register = require('./register');
-router.post('/register',register.register); // create a module for login page
+router.post('/register', before_auth ,register.register); // create a module for login page
 
 
 //var register = require('./register');

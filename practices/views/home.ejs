@@ -81,10 +81,26 @@
             letter-spacing: .5px;
             color: red;
         }
+        .thanks_msg_spn{
+                letter-spacing: 1px;
+                width: 280px;
+                text-align: center;
+                background-color: #00BCD4;;
+                color: white;
+                padding: 14px 20px;
+                margin: auto;
+                border: none;
+                cursor: pointer;
+                display: block;
+            }
     </style>
     <body>
         <section>
+
             <h2 >Login</h2>
+            <% if(typeof thanks_msg !== 'undefined') { %>
+                <span class="thanks_msg_spn"><%= thanks_msg %></span>
+                <% }%>
             <form action="/login" method="POST">
                 <!--            <div class="imgcontainer">
                                 <img src="assets/img/avatar.png" alt="Avatar" class="avatar">
@@ -120,4 +136,9 @@
         }
         %>
     </body>
+    <script>
+            setTimeout(function () {
+                $('.thanks_msg_spn').fadeOut();
+            }, 3000);
+        </script>
 </html>

@@ -39,9 +39,10 @@ exports.register = function(req,res){
           "modified": today
       }
 
-      connection.query('SELECT * FROM users WHERE email = ?', [email], function (error, results, fields) {
-          if (error) {
-              res.json({error:'Something went wrong.Please try again.'});
+      connection.query('SELECT * FROM users WHERE email = ?', [email], function (errors, results, fields) {
+          if (errors) {
+              res.json(errors);
+              //res.json({error:'Something went wrong.Please try again.'});
         } else {
              // check email is already exist or not
              if(results.length < 0)
@@ -59,12 +60,18 @@ exports.register = function(req,res){
              else {
                   connection.query('INSERT INTO users SET ?', users, function (error, results, fields) {
                      if (error) {
-                         res.json({error:'Something went wrong.Please try again.',
-                                   info : error
-                                });
+                      res.render('register',{
+                        fname:req.body.fname,
+                        lname:req.body.lname,
+                        mobile:req.body.mobile,
+                        email:req.body.email,
+                        password:req.body.password,
+                        cnrfm_pswrd:req.body.cnrfm_pswrd,
+                        thanks_msg:'Something went wrong.'
+                      });
                      } else {
                        req.session.user_added = 'You have registerd successfully.';
-                       res.redirect('/register');
+                       res.redirect('/login');
                      }
                   });
              }
