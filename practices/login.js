@@ -3,7 +3,6 @@ const validate = require('node-input-validator');
 const con = require('./connection');
 
 exports.login = function(req,res){
-
   let validator = new validate(req.body, {
     email: 'required|email',
     password: 'required|minLength:6|maxLength:25'

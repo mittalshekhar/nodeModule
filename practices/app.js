@@ -50,15 +50,20 @@ app.use(session({
 
 // Authentication and Authorization Middleware
 var auth = function (req, res, next) {
-  
-  
+  req.session.user_id = 1;
   if (req.session && req.session.user_id) {
        // get the user-detail of login user and set the session
         var auth = require('./auth');
         auth.userDetail(req.session.user_id,function(getUserDetail){
-          req.session.userDetail = getUserDetail;
-          return next();
-        }); 
+            if(userDetail.length)
+            {
+              // console.log("sdsd");
+              // console.log(userDetail);
+              req.session.userDetail = userDetail;
+              return next();
+            }
+        });
+        
    } else {
        res.redirect('/login');
    }
