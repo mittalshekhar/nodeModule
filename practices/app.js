@@ -55,11 +55,9 @@ var auth = function (req, res, next) {
        // get the user-detail of login user and set the session
         var auth = require('./auth');
         auth.userDetail(req.session.user_id,function(getUserDetail){
-            if(userDetail.length)
+            if(getUserDetail)
             {
-              // console.log("sdsd");
-              // console.log(userDetail);
-              req.session.userDetail = userDetail;
+              req.session.userDetail = getUserDetail;
               return next();
             }
         });
@@ -79,6 +77,7 @@ var before_auth = function (req, res, next) {
 
 ///
 const dashboard = require('./dashboard');
+const profile   = require('./controller/getProfile');
 app.get('/' , auth,dashboard.userList)
    .get('/login',before_auth ,function (req, res) {
         res.render('home',{
@@ -100,6 +99,7 @@ app.get('/' , auth,dashboard.userList)
         // example if your are not set the views directory
         res.render(__dirname + '/views/index');
     })
+    .get('/profile/:id',)
 
 // POST /login gets urlencoded bodies
 /*app.post('/login', urlencodedParser, function (req, res) {
