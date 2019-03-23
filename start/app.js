@@ -12,7 +12,8 @@ var a = xyz('5',function(aa){
     console.log(aa);
     return aa;
 });
-res.send(a);
+res.end(a);
+console.log(a);
 }
 
 function xyz(arg,callback)
@@ -20,9 +21,6 @@ function xyz(arg,callback)
     var aa = 55;
 	return callback(aa);
 }
-
-
-
 
 http.createServer(foo).listen(8000);
 console.log('start server');
