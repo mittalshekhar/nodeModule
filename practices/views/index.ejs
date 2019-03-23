@@ -21,65 +21,44 @@
            </div>
            <!-- END PAGE HEADER-->
            <!-- satrt body contenter code write here.... -->    
-           <div class="mt-bootstrap-tables">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet light ">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class="icon-social-dribbble font-dark hide"></i>
-                                    <span class="caption-subject font-dark bold uppercase">User List</span>
-                                </div>
-                            </div>
-                            <div class="portlet-body">
-                                <div class="bootstrap-table">
-                                    <div class="fixed-table-toolbar"></div>
-                                    <div class="fixed-table-container" style="height: 299px; padding-bottom: 40px;">
-                                        <div class="fixed-table-header" style="margin-right: 0px;">
-                                            <table class="table table-hover" style="widows: 100%;">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="" data-field="id" tabindex="0">
-                                                            <div class="th-inner ">Item ID</div>
-                                                            <div class="fht-cell"></div>
-                                                        </th>
-                                                        <th style="" data-field="name" tabindex="0">
-                                                            <div class="th-inner ">Item Name</div>
-                                                            <div class="fht-cell"></div>
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                        <div class="fixed-table-body">
-                                            <table data-toggle="table" data-height="299" class="table table-hover" style="margin-top: -40px;"></table>
-                                            <thead>
-                                                <tr>
-                                                    <th style="" data-field="id" tabindex="0">
-                                                        <div class="th-inner ">Item ID</div>
-                                                        <div class="fht-cell"></div>
-                                                    </th>
-                                                    <th style="" data-field="name" tabindex="0">
-                                                        <div class="th-inner ">Item Name</div>
-                                                        <div class="fht-cell"></div>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="no-records-found">
-                                                    <td colspan="3">No matching records found</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
+
+           <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-social-dribbble font-green"></i>
+                    <span class="caption-subject font-green bold uppercase">User List</span>
                 </div>
             </div>
+            <div class="portlet-body">
+                <div class="table-scrollable">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> First Name </th>
+                                <th> Last Name </th>
+                                <th> Email </th>
+                                <th> Status </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <%# JSON.stringify(userList) #%>
+                        <% for(var i=0; i < userList.length; i++) { %> 
+                            <tr>
+                                <td> <%- i+1 -%> </td>
+                                <td> <%- userList[i].first_name -%> </td>
+                                <td> <%- userList[i].last_name -%> </td>
+                                <td> <%- userList[i].email -%> </td>
+                                <td>
+                                    <span class="label label-sm label-success"> Edit </span>
+                                </td>
+                            </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
            <!-- end body contenter code write here.... -->    
        </div>

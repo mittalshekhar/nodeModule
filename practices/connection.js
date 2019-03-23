@@ -2,7 +2,7 @@ var mysql      = require('mysql');
 var connect = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '',
+  password : 'sparx',
   database : 'nodeSetup'
 });
 connect.connect(function(err){
